@@ -78,19 +78,19 @@
             </thead>
             <?php
                 include 'koneksi.php';
-                $data = mysqli_query($koneksi,"SELECT * FROM db_imk");
+                $data = mysqli_query($koneksi,"SELECT * FROM diary_aktivitas");
                 while($d = mysqli_fetch_array($data)){
             ?>
             <tbody id="myTable">
                 <tr>
-                    <td><?php echo $d['Id_catatan']; ?></td>
-                    <td><?php echo $d['Author']; ?></td>
-                    <td><?php echo $d['Tanggal']; ?></td>
-                    <td><?php echo $d['Judul']; ?></td>
-                    <td><?php echo $d['Catatan']; ?></td>
+                    <td><?php echo $d['id']; ?></td>
+                    <td><?php echo $d['author']; ?></td>
+                    <td><?php echo $d['date_add']; ?></td>
+                    <td><?php echo $d['title']; ?></td>
+                    <td><?php echo $d['content']; ?></td>
                     <td>
-                <a href="update.php?id_catatan=<?php echo $d['Id_catatan']; ?>" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Edit</a>
-                <a href="delete.php?id_catatan=<?php echo $d['Id_catatan']; ?>" onclick="return confirm('Anda yakin mau menghapus item ini ?')" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">HAPUS </a>
+                <a href="update.php?id=<?php echo $d['id']; ?>" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Edit</a>
+                <a href="delete.php?id=<?php echo $d['id']; ?>" onclick="return confirm('Anda yakin mau menghapus item ini ?')" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">HAPUS </a>
                     </td>
                 </tr>
             <?php

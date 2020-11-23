@@ -1,4 +1,8 @@
-<?php include 'koneksi.php'; ?>
+<?php 
+  include 'koneksi.php'; 
+  session_start();
+  $_SESSION['success-add'] = false;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

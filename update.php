@@ -12,7 +12,12 @@
       <div class="card p-5 border-warning">
         <h1 class="text-warning">Sunting Cerita Diary</h1>
         <hr class="border-warning">
+        
         <form class="d-flex flex-column justify-content-center text-warning" autocomplete="off" method="POST" action="update_aksi.php">
+          <div class="form-group">
+            <label for="diary-title">ID Diary</label>
+            <input type="text" class="form-control form-control-lg" id="diary-id" name="diary-id" value="<?= $detail['id']; ?>" required readonly/>
+          </div>
           <div class="form-group">
             <label for="diary-title">Judul Diary</label>
             <input type="text" class="form-control form-control-lg" id="diary-title" name="diary-title" placeholder="Sunting judul menarik Anda." value="<?= $detail['title']; ?>" required />
@@ -34,3 +39,4 @@
   include_once 'components/foot.php';
   include_once 'components/close.php';
 ?>
+

@@ -27,9 +27,9 @@
           <td class="align-middle"><?= $row['author'];?></td>
           <td class="align-middle"><?= $row['date_update'] ?? $row['date_add'];?></td>
           <td class="align-middle text-center">
-            <a href="detail.php?id=<?= $row['id']; ?>" class="btn btn-outline-info" role="button" aria-pressed="true">Lihat</a>
-            <a href="update.php?id=<?= $row['id']; ?>" class="btn btn-outline-warning" role="button" aria-pressed="true">Sunting</a>
-            <a href="delete.php?id=<?= $row['id']; ?>" onclick="return confirm('Anda yakin mau menghapus item ini ?')" class="btn btn-outline-danger" role="button" aria-pressed="true">HAPUS </a>
+            <a href="detail.php?id=<?= $row['id']; ?>" class="btn btn-outline-info" role="button" aria-pressed="true"><i class="fa fa-eye"></i></a>
+            <a href="update.php?id=<?= $row['id']; ?>" class="btn btn-outline-warning" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
+            <a href="delete.php?id=<?= $row['id']; ?>" onclick="return confirm('Anda yakin mau menghapus item ini ?')" class="btn btn-outline-danger" role="button" aria-pressed="true"><i class="fa fa-trash"></i></a>
           </td>
         </tr>
         <?php endforeach; ?>

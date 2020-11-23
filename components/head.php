@@ -1,5 +1,5 @@
-
 <?php 
+  error_reporting(0);
   include 'koneksi.php'; 
   session_start();
   $_SESSION['success-add'] ?: false;

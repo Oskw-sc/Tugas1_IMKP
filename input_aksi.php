@@ -1,18 +1,18 @@
 <?php
 //koneksi database
 include 'koneksi.php';
+session_start();
 
 //menangkap data yang dikirim dari form
-$id_catatan = $_POST['id_catatan'];
-$author = $_POST['author'];
-$tanggal = $_POST['tanggal'];
-$judul = $_POST['judul'];
-$catatan = $_POST['catatan'];
+$author = $_POST['diary-author'];
+$title = $_POST['diary-title'];
+$content = $_POST['diary-content'];
 
 //menginput data ke database
-mysqli_query($koneksi,"INSERT INTO db_imk VALUE('$id_catatan','$author','$tanggal', '', '$judul','$catatan')");
+mysqli_query($koneksi, "INSERT INTO diary_aktivitas VALUE('', '$author', NOW(), NULL, '$title', '$content')");
+
+$_SESSION['success-add'] = true;
 
 //mengalihkan halaman kembali ke activity.php
-header("location:activity.php");
+header("location:index.php");
 ?>
-

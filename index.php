@@ -1,61 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <style>
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-  </style>
-  <title>GIT</title>
-</head>
-<body>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-    <a class="navbar-brand" href="#">
-      <img src="https://www.sascleanindonesia.com/wp-content/uploads/2015/10/logo-usu.png" alt="logo" style="width:80px;">Lab IMK
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="activity.php">Activity</a>
-        </li> 
-        <li class="nav-item">
-          <a class="nav-link" href="about.php">About</a>
-        </li>   
-      </ul>
-    </div>  
-  </nav>
-
-  <div class="jumbotron text-center" style="margin-bottom:0">
-    <br/>
-    <br/>
-    <h1>Welcome</h1>
+<?php include_once 'components/head.php'; ?>
+  <div class="hero text-center text-white d-flex justify-content-center align-items-center">
+    <h1 class="hero-title parisienne-font">Diary</h1>
   </div>
   
-  <div class="container" style="padding:100px 0 100px 0;">
-    <div>
-        <h1>Hello this is index.php</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <hr>
-    <h3>Test</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
-  
-  <footer class="container-fluid text-center">
-    <p>Copyright &copy; 2020</p>
-  </footer>
-</body>
-</html>
+  <div class="container-md my-5">
+    <h1 class="text-center mb-4 border-bottom border-success text-success title strong-fontsize">Daftar Diary Mahasiswa</h1>
+    <table id="list-table" class="table table-hover table-bordered" style="width: 100%">
+      <thead class="thead-dark text-center">
+        <tr>
+          <th scope="col" class="align-middle">#</th>
+          <th scope="col" class="align-middle">Judul</th>
+          <th scope="col" class="align-middle">Nama Pengarang</th>
+          <th scope="col" class="align-middle">Tanggal Posting</th>
+          <th scope="col" class="align-middle">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+          $list = mysqli_query($koneksi, "SELECT * FROM diary_aktivitas");
+          $i = 1;
+          foreach($list as $row):
+        ?>
+        <tr>
+          <th class="align-middle text-center" scope="row"><?= $i++;?></th>
+          <td class="align-middle"><?= $row['title'];?></td>
+          <td class="align-middle"><?= $row['author'];?></td>
+          <td class="align-middle"><?= $row['date_update'] ?? $row['date_add'];?></td>
+          <td class="align-middle text-center">
+            <a href="detail.php?id=<?= $row['id']; ?>" class="btn btn-outline-info" role="button" aria-pressed="true"><i class="fa fa-eye"></i></a>
+            <a href="update.php?id=<?= $row['id']; ?>" class="btn btn-outline-warning" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
+            <button onclick="deleteThis(<?= $row['id']; ?>)" class="btn btn-outline-danger" role="button" aria-pressed="true"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+    
+    <hr class="border-success my-5">
+
+    <h2 class="text-info text-center strong-fontsize">Saatnya... kita berbagi cerita!!!</h2>
+    <h4 class="text-info text-center">Yuk, kirimkan cerita menarikmu dengan form berikut.</h4>
+    <form class="d-flex flex-column justify-content-center" autocomplete="off" method="POST" action="input_aksi.php">
+      <div class="form-group">
+        <label for="diary-title">Judul Diary</label>
+        <input type="text" class="form-control form-control-lg" id="diary-title" name="diary-title" placeholder="Masukkan judul menarik Anda." required />
+      </div>
+      <div class="form-group">
+        <label for="diary-author">Nama Anda</label>
+        <input type="text" class="form-control form-control-lg" id="diary-author" name="diary-author" placeholder="Masukkan nama lengkap Anda." required />
+      </div>
+      <div class="form-group">
+        <label for="diary-content">Cerita Menarik</label>
+        <textarea class="form-control form-control-lg" id="diary-content" name="diary-content" rows="5" placeholder="Mari berbagi cerita menarik Anda." required /></textarea>
+      </div>
+      <button type="submit" class="btn btn-outline-info btn-lg p-3 my-2">Kirimkan Cerita</button>
+    </form>
+  </div>
+<?php
+  include_once 'components/foot.php';
+  if($_SESSION['success-add']) :
+    $_SESSION['success-add'] = false;
+?>
+  <script>
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Cerita Anda berhasil dikirim!!!',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  </script>
+<?php
+  endif;
+  if($_SESSION['success-edit']) :
+    $_SESSION['success-edit'] = false;
+?>
+  <script>
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Cerita Anda berhasil disunting!!!',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  </script>
+<?php
+  endif;
+  if($_SESSION['success-delete']) :
+    $_SESSION['success-delete'] = false;
+?>
+  <script>
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Cerita Anda telah terhapus.',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  </script>
+<?php endif; ?>
+  <script>
+    const deleteThis = (id) => {
+      Swal.fire({
+        title: 'Ingin menghapus data ini?',
+        text: "Data akan hilang setelah dihapus!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'HAPUS',
+        cancelButtonText: 'BATAL'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = window.location.href + (window.location.href.includes('index.php') ? '/..' : '') + `/delete.php?id=${id}`
+        }
+      })
+    }
+  </script>
+<?php include_once 'components/close.php'; ?>

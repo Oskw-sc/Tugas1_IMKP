@@ -1,19 +1,20 @@
 <?php
 //koneksi database
 include 'koneksi.php';
+session_start();
 
 //menangkap data yang dikirim dari form
-$old_id_catatan = $_POST['old_id_catatan'];
-$id_catatan = $_POST['id_catatan'];
-$author = $_POST['author'];
-$tanggal = $_POST['tanggal'];
-$judul = $_POST['judul'];
-$catatan = $_POST['catatan'];
+$id_catatan = $_POST['diary-id'];
+$author = $_POST['diary-author'];
+$title = $_POST['diary-title'];
+$content = $_POST['diary-content'];
 
 //update data ke database
-$data= mysqli_query($koneksi,"UPDATE db_imk SET id_catatan = '$id_catatan', author= '$author', tanggal= '$tanggal', judul = '$judul', catatan='$catatan' WHERE id_catatan = '$old_id_catatan' ");
+$data= mysqli_query($koneksi,"UPDATE diary_aktivitas SET id = '$id_catatan', author = '$author', date_update = NOW(), title = '$title', content = '$content' WHERE id = '$id_catatan'");
+
+$_SESSION['success-edit'] = true;
 
 //mengalihkan halaman kembali ke activity.php
-header("location:activity.php");
+header("location:index.php");
 
 ?>

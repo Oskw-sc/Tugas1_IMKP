@@ -4,6 +4,7 @@
   session_start();
   $_SESSION['success-add'] ?: false;
   $_SESSION['success-edit'] ?: false;
+  $_SESSION['success-delete'] ?: false;
 ?>
 <!DOCTYPE html>
 <html lang="en">

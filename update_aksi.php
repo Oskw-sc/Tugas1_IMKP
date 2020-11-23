@@ -14,7 +14,7 @@ $data= mysqli_query($koneksi,"UPDATE diary_aktivitas SET id = '$id_catatan', aut
 
 $_SESSION['success-edit'] = true;
 
-//mengalihkan halaman kembali ke activity.php
+//mengalihkan halaman kembali ke index.php
 header("location:index.php");
 
 ?>

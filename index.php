@@ -3,16 +3,16 @@
     <h1 class="hero-title parisienne-font">Diary</h1>
   </div>
   
-  <div class="container my-5">
+  <div class="container-md my-5">
     <h1 class="text-center mb-4 border-bottom border-success text-success title strong-fontsize">Daftar Diary Mahasiswa</h1>
-    <table id="list-table" class="table table-hover table-bordered" style="width: 100%">
+    <table id="list-table" class="table table-hover table-bordered table-responsive" style="width: 100%">
       <thead class="thead-dark text-center">
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Judul</th>
-          <th scope="col">Nama Pengarang</th>
-          <th scope="col">Tanggal Posting</th>
-          <th scope="col">Aksi</th>
+          <th scope="col" class="align-middle">#</th>
+          <th scope="col" class="align-middle">Judul</th>
+          <th scope="col" class="align-middle">Nama Pengarang</th>
+          <th scope="col" class="align-middle">Tanggal Posting</th>
+          <th scope="col" class="align-middle">Aksi</th>
         </tr>
       </thead>
       <tbody>
@@ -72,6 +72,7 @@
   </script>
 <?php endif; ?>
   <script>
+    console.log(window.location.pathname)
     const deleteThis = (id) => {
       Swal.fire({
         title: 'Are you sure?',
@@ -83,7 +84,7 @@
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = `delete.php?id=${id}`;
+          window.location.href = window.location.href + (window.location.href.includes('index.php') ? '/..' : '') + `delete.php?id=${id}`
         }
       })
     }

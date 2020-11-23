@@ -38,4 +38,5 @@
 <?php
   include_once 'components/foot.php';
   include_once 'components/close.php';
- ?>
+?>
+

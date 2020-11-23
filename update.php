@@ -35,4 +35,7 @@
       </div>
     </div>
   </div>
-<?php include_once 'components/foot.php'; ?>
+<?php
+  include_once 'components/foot.php';
+  include_once 'components/close.php';
+ ?>

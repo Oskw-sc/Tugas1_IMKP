@@ -1,4 +1,7 @@
-<?php include 'koneksi.php'; ?>
+<?php
+  include 'koneksi.php';
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +14,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Styles -->
   <link rel="stylesheet" href="assets/style.css">
   <title>Diary Aktivitas</title>

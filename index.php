@@ -3,16 +3,16 @@
     <h1 class="hero-title parisienne-font">Diary</h1>
   </div>
   
-  <div class="container my-5">
+  <div class="container-md my-5">
     <h1 class="text-center mb-4 border-bottom border-success text-success title strong-fontsize">Daftar Diary Mahasiswa</h1>
-    <table id="list-table" class="table table-hover table-bordered" style="width: 100%">
+    <table id="list-table" class="table table-hover table-bordered table-responsive" style="width: 100%">
       <thead class="thead-dark text-center">
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Judul</th>
-          <th scope="col">Nama Pengarang</th>
-          <th scope="col">Tanggal Posting</th>
-          <th scope="col">Aksi</th>
+          <th scope="col" class="align-middle">#</th>
+          <th scope="col" class="align-middle">Judul</th>
+          <th scope="col" class="align-middle">Nama Pengarang</th>
+          <th scope="col" class="align-middle">Tanggal Posting</th>
+          <th scope="col" class="align-middle">Aksi</th>
         </tr>
       </thead>
       <tbody>
@@ -27,9 +27,9 @@
           <td class="align-middle"><?= $row['author'];?></td>
           <td class="align-middle"><?= $row['date_update'] ?? $row['date_add'];?></td>
           <td class="align-middle text-center">
-            <a href="detail.php?id=<?= $row['id']; ?>" class="btn btn-outline-info" role="button" aria-pressed="true">Lihat</a>
-            <a href="update.php?id=<?= $row['id']; ?>" class="btn btn-outline-warning" role="button" aria-pressed="true">Sunting</a>
-            <a href="delete.php?id=<?= $row['id']; ?>" onclick="return confirm('Anda yakin mau menghapus item ini ?')" class="btn btn-outline-danger" role="button" aria-pressed="true">HAPUS </a>
+            <a href="detail.php?id=<?= $row['id']; ?>" class="btn btn-outline-info" role="button" aria-pressed="true"><i class="fa fa-eye"></i></a>
+            <a href="update.php?id=<?= $row['id']; ?>" class="btn btn-outline-warning" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
+            <button onclick="deleteThis(<?= $row['id']; ?>)" class="btn btn-outline-danger" role="button" aria-pressed="true"><i class="fa fa-trash"></i></button>
           </td>
         </tr>
         <?php endforeach; ?>
@@ -56,4 +56,37 @@
       <button type="submit" class="btn btn-outline-info btn-lg p-3 my-2">Kirimkan Cerita</button>
     </form>
   </div>
-<?php include_once 'components/foot.php'; ?>
+<?php
+  include_once 'components/foot.php';
+  if($_SESSION['success-add']) :
+    $_SESSION['success-add'] = false;
+?>
+  <script>
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Cerita Anda berhasil dikirim!!!',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  </script>
+<?php endif; ?>
+  <script>
+    console.log(window.location.pathname)
+    const deleteThis = (id) => {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = window.location.href + (window.location.href.includes('index.php') ? '/..' : '') + `delete.php?id=${id}`
+        }
+      })
+    }
+  </script>
+<?php include_once 'components/close.php'; ?>

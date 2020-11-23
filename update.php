@@ -31,6 +31,7 @@
             <textarea class="form-control form-control-lg" id="diary-content" name="diary-content" rows="8" placeholder="Sunting cerita menarik Anda." required /><?= $detail['content']; ?></textarea>
           </div>
           <button type="submit" class="btn btn-outline-warning btn-lg p-3 my-2">Sunting Cerita</button>
+          <a href="index.php" type="button" class="btn btn-outline-primary btn-lg p-3 my-2">Kembali</a>
         </form>
       </div>
     </div>

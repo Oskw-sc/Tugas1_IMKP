@@ -75,16 +75,17 @@
     console.log(window.location.pathname)
     const deleteThis = (id) => {
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Ingin menghapus data ini?',
+        text: "Data akan hilang setelah dihapus!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'HAPUS',
+        cancelButtonText: 'BATAL'
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = window.location.href + (window.location.href.includes('index.php') ? '/..' : '') + `delete.php?id=${id}`
+          window.location.href = window.location.href + (window.location.href.includes('index.php') ? '/..' : '') + `/delete.php?id=${id}`
         }
       })
     }

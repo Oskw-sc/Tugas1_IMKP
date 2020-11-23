@@ -1,0 +1,67 @@
+body{
+  font-family: 'Cairo', sans-serif;
+  font-weight: 400;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 30px;
+  border: 1px solid #fff;
+}
+
+.strong-fontsize {
+  font-weight: 700;
+}
+
+.light-fontsize {
+  font-weight: 300;
+}
+
+.parisienne-font {
+  font-family: 'Parisienne', cursive;
+}
+
+.paragraph-text {
+  text-indent: 10%;
+}
+
+.fluid-vertical {
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.hero {
+  min-height: 500px;
+  width: 100%;
+  background: linear-gradient(143deg, rgba(0,0,0,0.5018382352941176) 61%, rgba(255,255,255,0.5) 100%), url("https://wallpaperaccess.com/full/2728414.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.hero-title {
+  font-size: 10em;
+}
+
+.title {
+  line-height: 80px;
+}
+
+.background-wall {
+  background: linear-gradient(143deg, rgba(0,0,0,0.5018382352941176) 61%, rgba(255,255,255,0.5) 100%), url("https://images.unsplash.com/photo-1572273869941-45732d6f581c?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9");
+  background-position: center;
+  background-size: cover;
+}
+
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}

@@ -29,7 +29,7 @@
           <td class="align-middle text-center">
             <a href="detail.php?id=<?= $row['id']; ?>" class="btn btn-outline-info" role="button" aria-pressed="true"><i class="fa fa-eye"></i></a>
             <a href="update.php?id=<?= $row['id']; ?>" class="btn btn-outline-warning" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
-            <a href="delete.php?id=<?= $row['id']; ?>" onclick="return confirm('Anda yakin mau menghapus item ini ?')" class="btn btn-outline-danger" role="button" aria-pressed="true"><i class="fa fa-trash"></i></a>
+            <button onclick="deleteThis(<?= $row['id']; ?>)" class="btn btn-outline-danger" role="button" aria-pressed="true"><i class="fa fa-trash"></i></button>
           </td>
         </tr>
         <?php endforeach; ?>
@@ -56,4 +56,36 @@
       <button type="submit" class="btn btn-outline-info btn-lg p-3 my-2">Kirimkan Cerita</button>
     </form>
   </div>
-<?php include_once 'components/foot.php'; ?>
+<?php
+  include_once 'components/foot.php';
+  if($_SESSION['success-add']) :
+    $_SESSION['success-add'] = false;
+?>
+  <script>
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Cerita Anda berhasil dikirim!!!',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  </script>
+<?php endif; ?>
+  <script>
+    const deleteThis = (id) => {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = `delete.php?id=${id}`;
+        }
+      })
+    }
+  </script>
+<?php include_once 'components/close.php'; ?>

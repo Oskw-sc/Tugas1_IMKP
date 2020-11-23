@@ -5,7 +5,7 @@
   
   <div class="container-md my-5">
     <h1 class="text-center mb-4 border-bottom border-success text-success title strong-fontsize">Daftar Diary Mahasiswa</h1>
-    <table id="list-table" class="table table-hover table-bordered table-responsive" style="width: 100%">
+    <table id="list-table" class="table table-hover table-bordered" style="width: 100%">
       <thead class="thead-dark text-center">
         <tr>
           <th scope="col" class="align-middle">#</th>

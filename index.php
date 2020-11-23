@@ -63,7 +63,6 @@
 ?>
   <script>
     Swal.fire({
-      position: 'top-end',
       icon: 'success',
       title: 'Cerita Anda berhasil dikirim!!!',
       showConfirmButton: false,
@@ -77,7 +76,6 @@
 ?>
   <script>
     Swal.fire({
-      position: 'top-end',
       icon: 'success',
       title: 'Cerita Anda berhasil disunting!!!',
       showConfirmButton: false,
@@ -91,7 +89,6 @@
 ?>
   <script>
     Swal.fire({
-      position: 'top-end',
       icon: 'success',
       title: 'Cerita Anda telah terhapus.',
       showConfirmButton: false,
@@ -101,7 +98,14 @@
 <?php endif; ?>
   <script>
     const deleteThis = (id) => {
-      Swal.fire({
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-danger mx-2',
+        cancelButton: 'btn btn-outline-primary mx-2'
+      },
+      buttonsStyling: false
+     })
+      swalWithBootstrapButtons.fire({
         title: 'Ingin menghapus data ini?',
         text: "Data akan hilang setelah dihapus!",
         icon: 'warning',

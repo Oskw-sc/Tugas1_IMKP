@@ -70,9 +70,36 @@
       timer: 2000
     })
   </script>
+<?php
+  endif;
+  if($_SESSION['success-edit']) :
+    $_SESSION['success-edit'] = false;
+?>
+  <script>
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Cerita Anda berhasil disunting!!!',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  </script>
+<?php
+  endif;
+  if($_SESSION['success-delete']) :
+    $_SESSION['success-delete'] = false;
+?>
+  <script>
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Cerita Anda telah terhapus.',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  </script>
 <?php endif; ?>
   <script>
-    console.log(window.location.pathname)
     const deleteThis = (id) => {
       Swal.fire({
         title: 'Ingin menghapus data ini?',
